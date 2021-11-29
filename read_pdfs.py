@@ -27,10 +27,13 @@ def read_pdf():
 
                 #pdf specific cleaning. change according to needs
                 page = re.sub(r"(\d\d:\d\d)", r"\n\1", page.extractText())
-                newline = page.find('\n')
-                page = page[newline+2:]
-                #page = re.sub("\. \. \.", "...", page)
-                #page = re.sub("\n", "", page)
+                page = re.sub(r"\s\s+", " ", page)
+                page = re.sub("\.\s\.", ".", page)
+                if i==0:
+                    newline = page.find('\n')
+                    page = page[newline+2:]
+                
+                
 
                 output.write(page)
 
